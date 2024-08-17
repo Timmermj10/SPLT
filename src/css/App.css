@@ -1,0 +1,15 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.App h1 {
+  text-align: center;
+}
+
+.start-check, .join-check {
+  margin: 10px 0;
+}
