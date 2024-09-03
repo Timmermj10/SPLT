@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 
 const NewCheck: React.FC = () => {
-  const [restaurant, setRestaurant] = useState('');
-  const [date, setDate] = useState('');
-  const [members, setMembers] = useState<string[]>([]);
+  const location = useLocation();
+  const { restaurant: initialRestaurant, date: initialDate, members: initialMembers } = location.state || {};
+
+  const [restaurant, setRestaurant] = useState(initialRestaurant || '');
+  const [date, setDate] = useState(initialDate || '');
+  const [members, setMembers] = useState<string[]>(initialMembers || []);
   const [newMember, setNewMember] = useState('');
-  const navigate = useNavigate();
 
   const handleAddMember = () => {
     if (newMember.trim() !== '') {
       setMembers([...members, newMember]);
       setNewMember('');
     }
-  };
-
-  const handleStartCheck = () => {
-    // Navigate to the start-check route with state
-    navigate('/start-check', { state: { restaurant, date, members } });
   };
 
   return (
@@ -62,7 +59,12 @@ const NewCheck: React.FC = () => {
           ))}
         </ul>
       </div>
-      <button onClick={handleStartCheck}>Start Check</button>
+      <Link to="/start-check" state={{ restaurant, date, members }}>
+        <button>Start Check</button>
+      </Link>
+      <Link to="/" style={{ position: 'fixed', bottom: '10px', left: '10px' }}>
+        Go Back
+      </Link>
     </div>
   );
 };

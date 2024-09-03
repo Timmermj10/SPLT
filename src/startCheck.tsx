@@ -85,6 +85,14 @@ function StartCheck({ items, setItems }: StartCheckProps) {
           </li>
         ))}
       </ul>
+
+      <Link to="/start-check/summary" state={{ restaurant, date, members: allMembers, items }}>
+        <button>Continue</button>
+      </Link>
+
+      <Link to="/new-check" state={{ restaurant, date, members: allMembers, items}} style={{ position: 'fixed', bottom: '10px', left: '10px' }}>
+        Go Back
+      </Link>
     </div>
   );
 }

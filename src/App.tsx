@@ -4,7 +4,9 @@ import './css/App.css';
 import StartCheck from './startCheck';
 import AdjustItem from './adjustItem';
 import NewCheck from './newCheck';
-import { Item } from './types'; // Import the Item type
+import CheckSummary from './checkSummary';
+import FinalCheckSummary from './finalCheckSummary';
+import { Item } from './types';
 
 function Home() {
   const navigate = useNavigate();
@@ -28,6 +30,8 @@ function App() {
         <Route path="/new-check" element={<NewCheck />} />
         <Route path="/start-check" element={<StartCheck items={items} setItems={setItems} />} />
         <Route path="/start-check/adjust/:index" element={<AdjustItem items={items} setItems={setItems} />} />
+        <Route path="/start-check/summary" element={<CheckSummary items={items}/>} />
+        <Route path="/start-check/finalSummary" element={<FinalCheckSummary items={items}/>} />
       </Routes>
     </Router>
   );
